@@ -1,8 +1,6 @@
-import React from 'react';
-import { format } from 'date-fns';
+import { DateDisplay } from './components/DateDisplay';
 
-export const DateFormatter: React.FC<{ date: Date }> = ({ date }) => {
-    return <div>{format(date, 'yyyy-MM-dd')}</div>;
-};
+const ReactDateFns = { DateDisplay };
 
-export default DateFormatter;
+export default ReactDateFns;
+export { DateDisplay };
