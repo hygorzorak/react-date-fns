@@ -23,16 +23,12 @@ import ReactDateFns, { DateDisplay } from "react-date-fns";
 const App = () => {
   return (
     <div>
-      <ReactDateFns.DateDisplay
-        date={new Date()}
-        className="date-class"
-        pattern="yyyy-MM-dd"
-      />
-      <DateDisplay
-        date={new Date()}
-        className="date-class"
-        pattern="MM/dd/yyyy"
-      />
+      <ReactDateFns.DateDisplay className="date-class" pattern="yyyy-MM-dd">
+        {new Date()}
+      </ReactDateFns.DateDisplay>
+      <DateDisplay className="date-class" pattern="MM/dd/yyyy">
+        {new Date()}
+      </DateDisplay>
     </div>
   );
 };
