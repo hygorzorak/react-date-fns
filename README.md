@@ -1,4 +1,4 @@
-# React Date Fns Package by [Hygor Zorak](http://github.com/hygorzorak)
+# React Date Fns Package
 
 A React component for displaying formatted dates using `date-fns`. This package provides a `DateDisplay` component that can be customized with various date patterns and CSS classes.
 
