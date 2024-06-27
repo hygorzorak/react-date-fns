@@ -1,4 +1,4 @@
-# React Date Fns Package
+# ReactDateFns Package
 
 A React component for displaying formatted dates using `date-fns`. This package provides a `DateDisplay` component that can be customized with various date patterns and CSS classes.
 
@@ -7,7 +7,7 @@ A React component for displaying formatted dates using `date-fns`. This package 
 To install the package, run:
 
 ```bash
-npm install react-date-fns-package
+npm install react-date-fns
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ You can import the `DateDisplay` component in your React application as follows:
 
 ```jsx
 import React from "react";
-import ReactDateFns, { DateDisplay } from "react-date-fns-package";
+import ReactDateFns, { DateDisplay } from "react-date-fns";
 
 const App = () => {
   return (
