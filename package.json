@@ -1,8 +1,9 @@
 {
   "name": "react-date-fns",
   "private": false,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
