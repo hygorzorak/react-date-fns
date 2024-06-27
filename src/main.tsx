@@ -1,8 +1,6 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import { DateDisplay } from './components/DateDisplay';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <div />
-  </React.StrictMode>,
-)
+const ReactDateFns = { DateDisplay };
+
+export default ReactDateFns;
+export { DateDisplay };
