@@ -1,6 +1,10 @@
-import { DateDisplay } from './components/DateDisplay';
+export type { DatePattern } from './models';
 
-const ReactDateFns = { DateDisplay };
+export { useFormattedDate, useFormattedDateRange, useRelativeTime } from './hooks';
+export { compareDates, isValidDate, parseDate } from './utilities';
 
+import { CountdownTimer, DateDisplay } from './components';
+export { CountdownTimer, DateDisplay };
+
+const ReactDateFns = { CountdownTimer, DateDisplay };
 export default ReactDateFns;
-export { DateDisplay };

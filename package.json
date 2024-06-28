@@ -1,9 +1,18 @@
 {
   "name": "react-date-fns",
+  "description": "Modern React library build on top of date-fns",
+  "author": "Hygor Zorak",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hygorzorak/react-date-fns.git"
+  },
   "private": false,
-  "version": "1.0.5",
+  "version": "1.1.0",
   "type": "module",
   "license": "MIT",
+  "contributors": [
+    "Hygor Zorak <hygor@zorak.org>"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -36,5 +45,14 @@
   },
   "main": "dist/react-date-fns.umd.js",
   "module": "dist/react-date-fns.es.js",
-  "types": "dist/index.d.ts"
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "react",
+    "date-fns",
+    "react-date-fns",
+    "date",
+    "format",
+    "typescript",
+    "date formatting"
+  ]
 }
