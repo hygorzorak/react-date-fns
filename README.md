@@ -1,6 +1,6 @@
 # ReactDateFns Package
 
-A React component for displaying formatted dates using `date-fns`. This package provides a `DateDisplay` component that can be customized with various date patterns and CSS classes.
+A React component library for displaying formatted dates using `date-fns`. This package provides several components: `DateDisplay`, `DateSelect`, and `CountdownTimer`. These components can be customized with various date patterns and CSS classes.
 
 ## Installation
 
@@ -12,23 +12,34 @@ npm install react-date-fns
 
 ## Usage
 
-### Importing the Component
+### Importing the Components
 
-You can import the `DateDisplay` component in your React application as follows:
+You can import the components in your React application as follows:
 
 ```jsx
 import React from "react";
-import ReactDateFns, { DateDisplay } from "react-date-fns";
+import { DateDisplay, DateSelect, CountdownTimer } from "react-date-fns";
 
 const App = () => {
+  const handleDateChange = (date) => {
+    console.log("Selected date:", date);
+  };
+
   return (
     <div>
-      <ReactDateFns.DateDisplay className="date-class" pattern="yyyy-MM-dd">
-        {new Date()}
-      </ReactDateFns.DateDisplay>
       <DateDisplay className="date-class" pattern="MM/dd/yyyy">
         {new Date()}
       </DateDisplay>
+      <DateSelect
+        className="date-select-class"
+        pattern="MM/dd/yyyy"
+        onDateChange={handleDateChange}
+        showSelectedDate
+      />
+      <CountdownTimer
+        className="countdown-class"
+        targetDate={new Date(new Date().getTime() + 10000)}
+      />
     </div>
   );
 };
@@ -40,9 +51,26 @@ export default App;
 
 The `DateDisplay` component accepts the following props:
 
-- `date` (`Date`): The date to be formatted and displayed.
+- `children` (`Date`): The date to be formatted and displayed.
 - `className` (`string`, optional): A CSS class to apply to the `<span>` element.
-- `pattern` (`DatePattern`): The date format pattern. It can be one of the predefined patterns or any custom string pattern compatible with `date-fns`.
+- `pattern` (`string`): The date format pattern. It can be one of the predefined patterns or any custom string pattern compatible with `date-fns`.
+
+### DateSelect Props
+
+The `DateSelect` component accepts the following props:
+
+- `className` (`string`, optional): Additional CSS classes to apply to the container element.
+- `pattern` (`string`): The format pattern to use for displaying the selected date.
+- `onDateChange` (`function`, optional): Callback function to handle date changes.
+- `showSelectedDate` (`boolean`, optional): Whether to display the selected date. Defaults to `true`.
+
+### CountdownTimer Props
+
+The `CountdownTimer` component accepts the following props:
+
+- `targetDate` (`Date`): The date to count down to.
+- `className` (`string`, optional): Additional CSS classes to apply to the container element.
+- `timeLeftText` (`string`, optional): Text to display when the countdown reaches zero. Defaults to "Time’s up!".
 
 ### Available Patterns
 
@@ -106,8 +134,3 @@ Contributions are welcome! Please open an issue or submit a pull request.
 ## License
 
 This project is licensed under the MIT License.
-
-```
-
-This README provides detailed information on how to install, use, and contribute to the package, as well as a list of available date format patterns. Feel free to adjust it based on your specific needs and preferences.
-```

@@ -1,7 +1,11 @@
 import { ReactElement, useState } from 'react';
 import { DateDisplay } from './components/DateDisplay';
+import { DateSelect } from './components/DateSelect';
+import { CountdownTimer } from './components/CountdownTimer';
+import { cn } from './utilities';
 
-const components: Dict<ReactElement> = {
+const components: Record<string, ReactElement> = {
+    CountdownTimer: <CountdownTimer className="block mt-4" targetDate={new Date(new Date().getTime() + 10000)} />,
     DateDisplay: (
         <DateDisplay
             className="block text-xl font-medium text-gray-900 mt-2"
@@ -10,9 +14,35 @@ const components: Dict<ReactElement> = {
             {new Date()}
         </DateDisplay>
     ),
+    DateSelect: <DateSelect className="block mt-4" pattern="MM/dd/yyyy" showSelectedDate />,
 };
 
-const componentDocs: Dict<ReactElement> = {
+const componentDocs: Record<string, ReactElement> = {
+    CountdownTimer: (
+        <div>
+            <h2 className="text-xl font-bold mb-2">CountdownTimer Component</h2>
+            <p className="mb-4">The <code>CountdownTimer</code> component counts down to a target date and displays the remaining time.</p>
+            <h3 className="text-lg font-semibold">Props</h3>
+            <ul className="list-disc list-inside mb-4">
+                <li><code>targetDate</code> (Date): The date to count down to.</li>
+                <li><code>className</code> (string, optional): Additional CSS classes to apply to the container element.</li>
+                <li><code>timeLeftText</code> (string, optional): Text to display when the countdown reaches zero.</li>
+            </ul>
+            <h3 className="text-lg font-semibold">Usage</h3>
+            <pre className="bg-gray-100 p-4 rounded"><code>
+                {`import { CountdownTimer } from './components/CountdownTimer';
+
+function Example() {
+    return (
+        <CountdownTimer 
+            className="block mt-4" 
+            targetDate={new Date(new Date().getTime() + 10000)} 
+        />
+    );
+}`}
+            </code></pre>
+        </div>
+    ),
     DateDisplay: (
         <div>
             <h2 className="text-xl font-bold mb-2">DateDisplay Component</h2>
@@ -21,7 +51,7 @@ const componentDocs: Dict<ReactElement> = {
             <ul className="list-disc list-inside mb-4">
                 <li><code>children</code> (Date): The date to be formatted and displayed.</li>
                 <li><code>className</code> (string, optional): Additional CSS classes to apply to the span element.</li>
-                <li><code>pattern</code> (DatePattern): The format pattern to use for displaying the date.</li>
+                <li><code>pattern</code> (string): The format pattern to use for displaying the date.</li>
             </ul>
             <h3 className="text-lg font-semibold">Usage</h3>
             <pre className="bg-gray-100 p-4 rounded"><code>
@@ -29,9 +59,45 @@ const componentDocs: Dict<ReactElement> = {
 
 function Example() {
     return (
-        <DateDisplay className="text-lg text-gray-700 mt-2" pattern="MM/dd/yyyy">
+        <DateDisplay 
+            className="text-lg text-gray-700 mt-2" 
+            pattern="MM/dd/yyyy"
+        >
             {new Date()}
         </DateDisplay>
+    );
+}`}
+            </code>
+            </pre>
+        </div>
+    ),
+    DateSelect: (
+        <div>
+            <h2 className="text-xl font-bold mb-2">DateSelect Component</h2>
+            <p className="mb-4">The <code>DateSelect</code> component allows users to select a date and displays the selected date formatted according to a specified pattern.</p>
+            <h3 className="text-lg font-semibold">Props</h3>
+            <ul className="list-disc list-inside mb-4">
+                <li><code>className</code> (string, optional): Additional CSS classes to apply to the container element.</li>
+                <li><code>pattern</code> (string): The format pattern to use for displaying the selected date.</li>
+                <li><code>onDateChange</code> (function, optional): Callback function to handle date changes.</li>
+                <li><code>showSelectedDate</code> (boolean, optional): Whether to display the selected date.</li>
+            </ul>
+            <h3 className="text-lg font-semibold">Usage</h3>
+            <pre className="bg-gray-100 p-4 rounded"><code>
+                {`import { DateSelect } from './components/DateSelect';
+
+function Example() {
+    const handleDateChange = (date) => {
+        console.log('Selected date:', date);
+    };
+
+    return (
+        <DateSelect 
+            className="block mt-4" 
+            pattern="MM/dd/yyyy" 
+            onDateChange={handleDateChange} 
+            showSelectedDate 
+        />
     );
 }`}
             </code></pre>
@@ -39,9 +105,10 @@ function Example() {
     ),
 };
 
-
 export function App() {
     const [selectedComponent, setSelectedComponent] = useState('DateDisplay');
+
+    const sortedComponentKeys = Object.keys(components).sort();
 
     return (
         <div className="min-h-screen bg-gray-100 flex">
@@ -52,11 +119,13 @@ export function App() {
                 <div className="p-2">
                     <h3 className="text-xl font-bold text-gray-800 mb-4">Components</h3>
                     <ul>
-                        {Object.keys(components).map((component) => (
+                        {sortedComponentKeys.map((component) => (
                             <li key={component}>
                                 <button
-                                    className={`w-full text-left p-2 rounded ${selectedComponent === component ? 'bg-gray-200' : ''
-                                        }`}
+                                    className={cn(
+                                        'w-full text-left p-2 rounded',
+                                        selectedComponent === component && 'bg-gray-200',
+                                    )}
                                     onClick={() => setSelectedComponent(component)}
                                 >
                                     {component}
@@ -66,7 +135,7 @@ export function App() {
                     </ul>
                 </div>
             </aside>
-            <main className="flex-1 p-6">
+            <main className="flex-1 p-6 mb-32">
                 <div className="bg-white shadow-lg rounded-lg p-6 mx-auto">
                     {componentDocs[selectedComponent]}
                     <div className="mt-6">
