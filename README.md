@@ -18,7 +18,7 @@ You can import the components in your React application as follows:
 
 ```jsx
 import React from "react";
-import { DateDisplay, DateSelect, CountdownTimer } from "react-date-fns";
+import { DateDisplay, CountdownTimer } from "react-date-fns";
 
 const App = () => {
   const handleDateChange = (date) => {
@@ -30,12 +30,6 @@ const App = () => {
       <DateDisplay className="date-class" pattern="MM/dd/yyyy">
         {new Date()}
       </DateDisplay>
-      <DateSelect
-        className="date-select-class"
-        pattern="MM/dd/yyyy"
-        onDateChange={handleDateChange}
-        showSelectedDate
-      />
       <CountdownTimer
         className="countdown-class"
         targetDate={new Date(new Date().getTime() + 10000)}
@@ -54,15 +48,6 @@ The `DateDisplay` component accepts the following props:
 - `children` (`Date`): The date to be formatted and displayed.
 - `className` (`string`, optional): A CSS class to apply to the `<span>` element.
 - `pattern` (`string`): The date format pattern. It can be one of the predefined patterns or any custom string pattern compatible with `date-fns`.
-
-### DateSelect Props
-
-The `DateSelect` component accepts the following props:
-
-- `className` (`string`, optional): Additional CSS classes to apply to the container element.
-- `pattern` (`string`): The format pattern to use for displaying the selected date.
-- `onDateChange` (`function`, optional): Callback function to handle date changes.
-- `showSelectedDate` (`boolean`, optional): Whether to display the selected date. Defaults to `true`.
 
 ### CountdownTimer Props
 

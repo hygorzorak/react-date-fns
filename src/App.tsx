@@ -1,6 +1,5 @@
 import { ReactElement, useState } from 'react';
 import { DateDisplay } from './components/DateDisplay';
-import { DateSelect } from './components/DateSelect';
 import { CountdownTimer } from './components/CountdownTimer';
 import { cn } from './utilities';
 
@@ -14,7 +13,6 @@ const components: Record<string, ReactElement> = {
             {new Date()}
         </DateDisplay>
     ),
-    DateSelect: <DateSelect className="block mt-4" pattern="MM/dd/yyyy" showSelectedDate />,
 };
 
 const componentDocs: Record<string, ReactElement> = {
@@ -71,38 +69,6 @@ function Example() {
             </pre>
         </div>
     ),
-    DateSelect: (
-        <div>
-            <h2 className="text-xl font-bold mb-2">DateSelect Component</h2>
-            <p className="mb-4">The <code>DateSelect</code> component allows users to select a date and displays the selected date formatted according to a specified pattern.</p>
-            <h3 className="text-lg font-semibold">Props</h3>
-            <ul className="list-disc list-inside mb-4">
-                <li><code>className</code> (string, optional): Additional CSS classes to apply to the container element.</li>
-                <li><code>pattern</code> (string): The format pattern to use for displaying the selected date.</li>
-                <li><code>onDateChange</code> (function, optional): Callback function to handle date changes.</li>
-                <li><code>showSelectedDate</code> (boolean, optional): Whether to display the selected date.</li>
-            </ul>
-            <h3 className="text-lg font-semibold">Usage</h3>
-            <pre className="bg-gray-100 p-4 rounded"><code>
-                {`import { DateSelect } from './components/DateSelect';
-
-function Example() {
-    const handleDateChange = (date) => {
-        console.log('Selected date:', date);
-    };
-
-    return (
-        <DateSelect 
-            className="block mt-4" 
-            pattern="MM/dd/yyyy" 
-            onDateChange={handleDateChange} 
-            showSelectedDate 
-        />
-    );
-}`}
-            </code></pre>
-        </div>
-    ),
 };
 
 export function App() {
@@ -140,9 +106,9 @@ export function App() {
                     {componentDocs[selectedComponent]}
                     <div className="mt-6">
                         <h1 className="text-2xl font-bold text-gray-800 mb-4">Component Preview</h1>
-                        <p className="text-lg text-gray-700">
+                        <div className="text-lg text-gray-700">
                             {components[selectedComponent]}
-                        </p>
+                        </div>
                     </div>
                 </div>
             </main>
